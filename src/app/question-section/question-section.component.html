@@ -1,0 +1,6 @@
+<div>{{section?.title}}</div>
+<div cdkDropList (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let question of section?.questions; track question" cdkDrag>
+      {{question}}
+    </div>
+</div>

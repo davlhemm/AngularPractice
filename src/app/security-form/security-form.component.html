@@ -1,0 +1,6 @@
+
+<div cdkDropList (cdkDropListDropped)="drop($event)">
+  <div *ngFor="let s of sections; index as i; track s" cdkDrag>
+    <app-question-section [section]='s'></app-question-section>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="gridArea">
+  <div *ngFor="let row of tttMatrix; index as i" class="row">
+    <!-- <div *ngFor="let col of tttMatrix[i]; index as j">
+      Indeces: {{i}}, {{j}}
+      Value: {{tttMatrix[i][j]}}
+    </div> -->
+    <button *ngFor="let col of tttMatrix[i]; index as j"
+      class="square"
+      (click)="select(i,j)">
+      <span>{{tttMatrix[i][j]}}</span>
+    </button>
+  </div>
+</div>
+<div>
+  <label for="example-ngModel">[(ngModel)]:</label>
+  <input [(ngModel)]="currentItem.name" id="example-ngModel">
+  <input [ngModel]="currentItem.name" (ngModelChange)="setUppercaseName($event)" id="example-uppercase">
+</div>

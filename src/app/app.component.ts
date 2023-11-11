@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularPractice';
+
+  ngOnInit() {
+    //console.log(Promise.resolve(123));
+  }
+
 }
+
+async function getData() {
+  return await Promise.resolve('Hello!');
+}
+

@@ -1,0 +1,6 @@
+<div>
+  <div *ngFor="let link of links" class="image">
+      <img src="{{link}}" />
+      <button class="remove" (click)="removeLink(link)">X</button>
+  </div>
+</div>
