@@ -9,25 +9,21 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class SecurityFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
-
-  //Question sets input
-  //questions: string[] = [];
   //Derive dynamic form from questions
   //someForm: FormArray = this.fb.array([this.fb.control('')]);
 
   //TODO: Embed sections here
-  sections?: Section[];// = this.buildSections();//['1','2','3'];
+  sections?: Section[];
 
   ngOnInit(): void {
     //Set up form
     this.sections = this.buildSections();
-    //console.table(this.sections);
   }
 
   buildSections(): Section[] {
     var sections: Section[] = [];
-    sections.push(new Section(['Q1','Q2','Q3'], 'Section 1'));
-    sections.push(new Section(['Q1','Q2','Q3'], 'Section 2'));
+    sections.push(new Section([new Question('Q1','EXTRA'),new Question('Q2'),new Question('Q3')], 'Section 1'));
+    sections.push(new Section([new Question('Q1'),new Question('Q2'),new Question('Q3')], 'Section 2'));
     return sections;
   }
 
@@ -37,12 +33,26 @@ export class SecurityFormComponent implements OnInit {
 }
 
 export class Section {
-  questions?: string[];
+  questions: Question[];
   title?: string;
 
-  constructor(questions: string[], title: string) {
-    this.questions = questions;
+  constructor(qs: Question[], title: string) {
+    this.questions = qs;
     this.title = title;
+  }
+}
+
+export class Question {
+  text?: string;
+  checked?: boolean;
+  label?: string;
+  extra?: string | undefined;
+
+  constructor(text:string, extra?: string | undefined) {
+    this.text = text;
+    this.checked = undefined;
+    this.label = 'No Answer';
+    this.extra = extra;
   }
 }
 

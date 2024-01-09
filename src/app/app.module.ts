@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionSectionComponent } from './question-section/question-section.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,25 @@
-<div>{{section?.title}}</div>
+<h3>{{section.title}}</h3>
 <div cdkDropList (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let question of section?.questions; track question" cdkDrag>
-      {{question}}
+    <div class="question"
+      [ngClass]="i%2 === 0 ? 'even' : 'odd'"
+      *ngFor="let question of section?.questions; track question; index as i;"
+      cdkDrag
+      (click)="questionClicked(i)">
+      <mat-checkbox
+        class="question-check-box"
+        [ngClass]="question.checked ? 'checked' : 'not-checked'"
+        [indeterminate]="true"
+        (change)="onChangeEvent($event, i)"
+        labelPosition="after"
+        aria-label="after"
+        ><label [ngClass]="getCheckedClass(question)">
+          {{question.label}}
+        </label>
+
+      </mat-checkbox>
+      <!-- TODO: Conditional ternary for ngclass -->
+      <textarea [readonly]="true" [ngClass]="i%2 === 0 ? 'even' : 'odd'" class="question-text">{{question.text}}</textarea>
+      <!-- TODO: Comment text (conditional on extra section in model?) -->
+      <textarea *ngIf="question.extra" [readonly]="true" [ngClass]="i%2 === 0 ? 'odd' : 'even'" class="question-text">{{question.extra}}</textarea>
     </div>
 </div>

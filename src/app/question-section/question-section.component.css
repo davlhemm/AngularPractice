@@ -1,0 +1,32 @@
+
+.question-check-box {
+  width: 150px;
+}
+
+.question {
+  display: flex;
+}
+
+textarea.question-text {
+  resize: none;
+  border: 0px;
+  font-size: 16px;
+}
+
+.odd {
+  color: black;
+  background-color: rgb(232, 232, 232);
+}
+
+.even {
+  color: black;
+  background-color: white;
+}
+
+.checked {
+  color: green;
+}
+
+.not-checked {
+  color: red;
+}
