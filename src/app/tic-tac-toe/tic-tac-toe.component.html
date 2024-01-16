@@ -14,5 +14,7 @@
 <div>
   <label for="example-ngModel">[(ngModel)]:</label>
   <input [(ngModel)]="currentItem.name" id="example-ngModel">
-  <input [ngModel]="currentItem.name" (ngModelChange)="setUppercaseName($event)" id="example-uppercase">
+  <input [ngModel]="currentItem.name"
+    (ngModelChange)="setUppercaseName($event)"
+    id="example-uppercase">
 </div>

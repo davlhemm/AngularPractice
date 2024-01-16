@@ -35,6 +35,7 @@ export class TicTacToeComponent {
     }
 
     setUppercaseName(e:any) {
+      this.currentItem.name = (e as string).toUpperCase();
       console.table(e);
     }
 }

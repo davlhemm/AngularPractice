@@ -1,0 +1,20 @@
+
+<form [formGroup]="phoneForm" (ngSubmit)="onSubmit()">
+  <label for="firstName">First Name</label>
+  <input formControlName="firstName" />
+
+  <label for="lastName">Last Name</label>
+  <input formControlName="lastName" />
+
+  <label for="phoneNumber">Phone Number</label>
+  <input formControlName="phoneNumber" />
+  <button type="submit">Log Phone Number</button>
+</form>
+<div>
+  <div *ngFor="let person of phonebook; index as i">
+    <div>Person {{i+1}}</div>
+    <div>First: {{person.firstName}}</div>
+    <div>Last: {{person.lastName}}</div>
+    <div>Phone: {{person.phoneNumber}}</div>
+  </div>
+</div>

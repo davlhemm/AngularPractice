@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionSectionComponent } from './question-section/question-section.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { PhonebookComponent } from './phonebook/phonebook.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ImageGalleryComponent,
     TicTacToeComponent,
     SecurityFormComponent,
-    QuestionSectionComponent
+    QuestionSectionComponent,
+    PhonebookComponent
   ],
   imports: [
     BrowserModule,
