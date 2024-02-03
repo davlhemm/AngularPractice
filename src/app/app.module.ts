@@ -13,6 +13,11 @@ import { QuestionSectionComponent } from './question-section/question-section.co
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { PhonebookComponent } from './phonebook/phonebook.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +35,11 @@ import { PhonebookComponent } from './phonebook/phonebook.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     DragDropModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatInputModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

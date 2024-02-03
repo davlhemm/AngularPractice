@@ -9,6 +9,7 @@ import { HubConnection } from '@microsoft/signalr';
   styleUrls: ['./phonebook.component.css']
 })
 export class PhonebookComponent implements OnInit {
+  chats: IChatThing[] = [];
   defaultFirstName : string = 'first';
   defaultLastName : string = 'last';
   defaultPhone : string = '777-777-7777';
@@ -39,7 +40,8 @@ export class PhonebookComponent implements OnInit {
       });
 
       connection.on("SendChat", (message: IChatThing) => {
-        console.log(message);
+        console.table(message);
+        this.chats.push(message);
       });
   }
 
