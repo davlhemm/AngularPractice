@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import * as signalR from '@microsoft/signalr';
 import { HubConnection } from '@microsoft/signalr';
+import { CdkDragDrop, CdkDragRelease, CdkDragStart, CdkDropList, DropListRef, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-phonebook',
@@ -24,6 +27,27 @@ export class PhonebookComponent implements OnInit {
     lastName: new FormControl(this.defaultLastName),
     phoneNumber: new FormControl(this.defaultPhone)
   });
+  displayedColumns: string[] = [
+    'firstName', 'lastName', 'phoneNumber'
+  ];
+  displayedColumnsOrdered: string[] = this.displayedColumns.slice();
+
+  dataSource = new MatTableDataSource<PersonPhone>(this.phonebook);
+
+  previousIndex?: number;
+
+  @ViewChild(MatSort) sort: MatSort = new MatSort;
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
+  loadData() {
+    // Fetch or set your data here
+    const newData = this.phonebook;
+
+    this.dataSource.data = newData;
+  }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -54,10 +78,29 @@ export class PhonebookComponent implements OnInit {
     };
     this.phonebook.push(newPerson);
     this.phonebook.sort((a,b) => (a.lastName > b.lastName) ? 1 : -1);
+    this.loadData();
+  }
+
+  updateColumnOrder(newOrder: string[]) {
+    this.displayedColumnsOrdered = newOrder;
+  }
+
+  dropList(event: any) {
+    console.table(event);
+  }
+
+  dropListDropped(event: CdkDragDrop<string[]>, index?: number) {
+    moveItemInArray(this.displayedColumnsOrdered, event.previousIndex, event.currentIndex);
+  }
+
+  dragStarted(event: CdkDragStart<string[]>, index?:number) {
+    console.table(event);
   }
 }
 
+
 interface PersonPhone {
+  //index: number;
   firstName: string;
   lastName: string;
   phoneNumber: string;

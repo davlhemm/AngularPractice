@@ -11,16 +11,56 @@
   <button type="submit">Log Phone Number</button>
 </form>
 
-<div>
+<mat-table [dataSource]="dataSource" cdkDropListGroup
+  matSort>
+  <!-- Add your columns -->
+  <ng-container *ngFor="let column of displayedColumnsOrdered; let i = index"
+    [matColumnDef]="column">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      cdkDrag
+      cdkDropList
+      (cdkDropListDropped)="dropListDropped($event)">
+      {{ column }}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element[column] }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumnsOrdered;"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumnsOrdered;"></mat-row>
+</mat-table>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8" cdkDropListGroup matSort>
+  <ng-container *ngFor="let column of displayedColumns; let i = index" [matColumnDef]="column">
+    <mat-header-cell *matHeaderCellDef
+      cdkDropList
+      cdkDropListLockAxis="x"
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="dropListDropped($event, i)"
+      cdkDrag
+      (cdkDragStarted)="dragStarted($event, i)"
+      [cdkDragData]="{name: column, columIndex: i}" mat-sort-header>
+      {{ column }}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row" > {{ row[column] }}  </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<!-- <div>
   <div *ngFor="let person of phonebook; index as i">
     <div>Person {{i+1}}</div>
     <div>First: {{person.firstName}}</div>
     <div>Last: {{person.lastName}}</div>
     <div>Phone: {{person.phoneNumber}}</div>
   </div>
+</div> -->
+<div>
+  <Label>CHATS</Label>
 </div>
 <div>
   <div *ngFor="let chat of chats">
     Chat from {{chat.userName}}: {{chat.id}} - {{chat.title}}: {{chat.body}}
   </div>
 </div>
+
+
